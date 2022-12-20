@@ -12,8 +12,6 @@ app.use((req, res, next) => {
 
 
 router.get('/list-api', (req, res) => {
-    res.header('Access-Control-Allow-Origin', '*');
-
     request(
         {
             url: `https://api.clickup.com/api/v2/list/${req.query.listId}/task?${req.query.query.toString()}`,
@@ -33,7 +31,6 @@ router.get('/list-api', (req, res) => {
 });
 
 router.get('/tasks-api', (req, res) => {
-    res.header('Access-Control-Allow-Origin', '*');
     request(
         {
             url: `https://api.clickup.com/api/v2/task/${req.query.taskId}?${req.query.query.toString()}`,
@@ -52,6 +49,7 @@ router.get('/tasks-api', (req, res) => {
 });
 
 const PORT = process.env.PORT || 5000;
-app.use("/.netlify/functions/api", router)
+app.use("/.netlify/functions/server", router)
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
+
 module.exports.handler = serverless(app)
