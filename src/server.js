@@ -14,7 +14,7 @@ router.use((req, res, next) => {
 router.get('/list-api', (req, res) => {
     request(
         {
-            url: `https://api.clickup.com/api/v2/list/${req.query.listId}/task?${req.query.query.toString()}`,
+            url: `https://api.clickup.com/api/v2/list/${req.query.listId}/task`,
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: 'pk_18924001_9XP63KU5MKGK40VZ09YHDJABAZAW1THD'
@@ -33,7 +33,7 @@ router.get('/list-api', (req, res) => {
 router.get('/tasks-api', (req, res) => {
     request(
         {
-            url: `https://api.clickup.com/api/v2/task/${req.query.taskId}?${req.query.query.toString()}`,
+            url: `https://api.clickup.com/api/v2/task/${req.query.taskId}?`,
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: 'pk_18924001_9XP63KU5MKGK40VZ09YHDJABAZAW1THD'
