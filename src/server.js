@@ -10,28 +10,23 @@ router.use((req, res, next) => {
     next();
 });
 
-
 router.get('/list-api', (req, res) => {
-    // request(
-    //     {
-    //         url: `https://api.clickup.com/api/v2/list/${req.query.listId}/task`,
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //             Authorization: 'pk_18924001_9XP63KU5MKGK40VZ09YHDJABAZAW1THD'
-    //         }
-    //     },
-    //     (error, response, body) => {
-    //         if (error || response.statusCode !== 200) {
-    //             return res.status(500).json({ type: 'error', message: error.message });
-    //         }
+    request(
+        {
+            url: `https://api.clickup.com/api/v2/list/${req.query.listId}/task?${req.query.listId}`,
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: 'pk_18924001_9XP63KU5MKGK40VZ09YHDJABAZAW1THD'
+            }
+        },
+        (error, response, body) => {
+            if (error || response.statusCode !== 200) {
+                return res.status(500).json({ type: 'error', message: error.message });
+            }
 
-    //         res.json(JSON.parse(body));
-    //     }
-    // );
-    res.json(
-        {hi: "HI FROM THE LISTS"}
-    )
-    
+            res.json(JSON.parse(body));
+        }
+    );
 });
 
 router.get('/tasks-api', (req, res) => {
@@ -50,9 +45,6 @@ router.get('/tasks-api', (req, res) => {
     //         res.json(JSON.parse(body));
     //     }
     // );
-    res.json(
-        {hi: "adfadsf"}
-    )
 });
 
 const PORT = process.env.PORT || 5000;
