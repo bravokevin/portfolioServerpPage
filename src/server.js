@@ -27,7 +27,7 @@ router.get('/list-api', (req, res) => {
     //     }
     // );
     res.json({
-        jh: "hello there"
+        jh: req.query.listId
     })
 });
 
@@ -48,7 +48,7 @@ router.get('/tasks-api', (req, res) => {
     //     }
     // );
     res.json({
-        joi: "dsfadfad"
+        joi: req.query.taskId
     })
 });
 
