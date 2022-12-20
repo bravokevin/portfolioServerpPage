@@ -1,6 +1,6 @@
 const express = require('express');
 const request = require('request');
-
+const axios = requre("axios");
 const serverless = require("serverless-http")
 const app = express();
 
@@ -13,7 +13,7 @@ router.use((req, res, next) => {
 
 
 router.get('/list-api', (req, res) => {
-    request(
+    axios.get(
         {
             url: `https://api.clickup.com/api/v2/list/${req.query.listId}/task?${req.query.query.toString()}`,
             headers: {
@@ -32,7 +32,7 @@ router.get('/list-api', (req, res) => {
 });
 
 router.get('/tasks-api', (req, res) => {
-    request(
+    axios.get(
         {
             url: `https://api.clickup.com/api/v2/task/${req.query.taskId}?${req.query.query.toString()}`,
             headers: {
