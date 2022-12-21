@@ -4,7 +4,7 @@ const serverless = require("serverless-http")
 const app = express();
 
 const router = express.Router()
-
+//habia que cambiar el header() por res.setHeader()
 router.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader(
@@ -34,24 +34,21 @@ router.get('/list-api', (req, res) => {
 });
 
 router.get('/tasks-api', (req, res) => {
-    // request(
-    //    
-    //         url: `https://api.clickup.com/api/v2/task/${req.query.taskId}?`,
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //             Authorization: 'pk_18924001_9XP63KU5MKGK40VZ09YHDJABAZAW1THD'
-    //         }
-    //     },
-    //     (error, response, body) => {
-    //         if (error || response.statusCode !== 200) {
-    //             return res.status(500).json({ type: 'error', message: error.message });
-    //         }
-    //         res.json(JSON.parse(body));
-    //     }
-    // );
-    res.json({
-        joi: req.query.taskId
-    })
+    request(
+       
+            url: `https://api.clickup.com/api/v2/task/${req.query.taskId}`,
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: 'pk_18924001_9XP63KU5MKGK40VZ09YHDJABAZAW1THD'
+            }
+        },
+        (error, response, body) => {
+            if (error || response.statusCode !== 200) {
+                return res.status(500).json({ type: 'error', message: error.message });
+            }
+            res.json(JSON.parse(body));
+        }
+    );
 });
 
 const PORT = process.env.PORT || 5000;
