@@ -2,6 +2,9 @@ const express = require('express');
 const request = require('request');
 const serverless = require("serverless-http")
 const app = express();
+const query = new URLSearchParams({
+    include_subtasks: 'true'
+}).toString();
 
 const router = express.Router()
 //habia que cambiar el header() por res.setHeader()
@@ -35,7 +38,7 @@ router.get('/list-api', (req, res) => {
 
 router.get('/tasks-api', (req, res) => {
     request({
-            url: `https://api.clickup.com/api/v2/task/${req.query.taskId}`,
+            url: `https://api.clickup.com/api/v2/task/${req.query.taskId}?${query}`,
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: 'pk_18924001_9XP63KU5MKGK40VZ09YHDJABAZAW1THD'
