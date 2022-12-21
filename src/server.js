@@ -34,8 +34,7 @@ router.get('/list-api', (req, res) => {
 });
 
 router.get('/tasks-api', (req, res) => {
-    request(
-       
+    request({
             url: `https://api.clickup.com/api/v2/task/${req.query.taskId}`,
             headers: {
                 'Content-Type': 'application/json',
